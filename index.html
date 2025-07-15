@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Escuchapp</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #ffffff;
+      color: #333;
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      background-color: #00c6a9;
+      padding: 10px;
+      color: white;
+      height: 30px;
+      cursor: pointer;
+    }
+
+    header img {
+      height: 30px;
+      margin-right: 10px;
+    }
+
+    .chat-container {
+      flex: 1;
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+      overflow-y: auto;
+    }
+
+    .bubble {
+      max-width: 75%;
+      padding: 10px;
+      margin-bottom: 10px;
+      border-radius: 10px;
+      line-height: 1.4;
+    }
+
+    .bot {
+      background-color: #d2f4f1;
+      align-self: flex-start;
+    }
+
+    .legal {
+      background-color: #e6fcf9;
+      /* font-size: 0.9em; */
+    }
+
+    .input-container {
+      display: flex;
+      padding: 10px;
+      border-top: 1px solid #ccc;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .send-button {
+      background-color: #00c6a9;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 50%;
+      font-size: 18px;
+      cursor: pointer;
+      margin-left: 10px;
+    }
+
+    .info-button {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background-color: #00c6a9;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 30px;
+      height: 30px;
+      font-size: 18px;
+      cursor: pointer;
+    }
+
+    .modal {
+      display: none;
+      flex-direction: column;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      justify-content: center;
+      align-items: center;
+    }
+
+    .modal-content {
+      background-color: white;
+      padding: 20px;
+      border-radius: 10px;
+      max-width: 90%;
+    }
+
+    .accept-button {
+      background-color: #00c6a9;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 20px;
+      padding: 10px;
+      cursor: pointer;
+    }
+
+    .close-modal-button {
+      color: black;
+      background-color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 15px;
+      padding: 5px;
+      cursor: pointer;
+      position: fixed;
+      margin-right: 6px;
+    }
+
+    .modal-scroll {
+      overflow-y: auto;
+      max-height: 90vh;
+      width: 95%;
+      border-radius: 10px;
+      padding: 20px;
+    }
+
+    .full-section {
+      padding: 20px 0;
+      border-bottom: 1px solid #ccc;
+      text-align: center;
+    }
+
+    .full-section img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 10px;
+      margin-top: 10px;
+    }
+
+    .card-container {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      justify-content: space-around;
+    }
+
+    @media (min-width: 768px) {
+      .card-container {
+        flex-direction: row;
+        justify-content: center;
+      }
+    }
+
+
+    .profile-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background-color: #f2f2f2;
+      padding: 15px;
+      border-radius: 10px;
+    }
+
+    .profile-card img {
+      border-radius: 50%;
+      width: 100px;
+      height: 100px;
+    }
+
+    #contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    #contact-form input,
+    #contact-form textarea {
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-family: inherit;
+    }
+
+    #contact-form button {
+      background-color: #00c6a9;
+      color: white;
+      border: none;
+      padding: 10px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+  <header onclick="openModal()">
+    <img src="https://img.icons8.com/glyph-neue/64/hearing.png" alt="Logo" />
+    <h1 style="font-size: 20px;">Escuchapp</h1>
+    <button class="info-button">!</button>
+  </header>
+
+  <div class="chat-container">
+    <div class="bubble bot">Hola 👋 ¿Te sientes abrumado, confundido o simplemente necesitas que alguien te escuche?
+    </div>
+    <div class="bubble bot">En Escuchapp ofrecemos <strong>consejo psicológico</strong> humano, profesional y accesible
+      en minutos.</div>
+    <div class="bubble bot">Estamos aquí para brindarte claridad, acompañamiento y orientación con empatía real.</div>
+    <div class="bubble bot legal">Antes de continuar, asegúrate de revisar nuestras políticas: <a
+        style="display: block;" href="#" onclick="openModal('consentimiento')">Consentimiento Informado</a> <a href="#"
+        onclick="openModal('descargo')">Descargo de Responsabilidad</a> <a style="display: block;" href="#"
+        onclick="openModal('privacidad')">Política de Privacidad</a></div>
+    <div class="bubble bot legal">Con tu mensaje, confirmas que has leído y aceptas nuestras políticas.</div>
+  </div>
+
+  <div class="input-container">
+    <span>Hola, me gustaría recibir orientación.</span>
+    <button class="send-button" onclick="sendToWhatsApp()">&gt;</button>
+  </div>
+
+  <div class="modal" id="infoModal">
+    <div class="modal-content modal-scroll" id="modalContent">
+
+      <div style="display: flex; justify-content: right; width:100%;">
+        <button class="close-modal-button" onclick="closeModal()">X</button>
+      </div>
+
+      <div id="simpleModalContent" style="display: none;">
+        <h2 id="modalTitle"></h2>
+        <p id="modalText"></p>
+        <div style="display: flex; justify-content: right; width:100%;">
+          <button class="accept-button" onclick="closeModal()">Aceptar</button>
+        </div>
+      </div>
+
+      <div id="fullInfoContent" style="display: none;">
+        <section class="full-section">
+          <h2>Escuchapp</h2>
+          <p>Ofrecemos orientación psicológica profesional, cálida y accesible por WhatsApp en minutos.</p>
+          <img src="img1.jpg" alt="Escuchapp" />
+        </section>
+
+        <section class="full-section">
+          <h2>¿Cómo funciona?</h2>
+          <p>Solo envía un mensaje. Te responderemos lo antes posible con orientación clara y cercana, adaptada a tu
+            situación.</p>
+          <img src="img2.jpg" alt="Cómo funciona" />
+        </section>
+
+        <section class="full-section">
+          <h2>Nuestro modelo</h2>
+          <p>Brindamos orientación breve basada en principios de la terapia cognitivo-conductual y enfoques humanistas.
+            Creemos en el poder de ser escuchado con empatía y respeto.</p>
+          <img src="img3.jpg" alt="Modelo" />
+        </section>
+
+        <section class="full-section">
+          <h2>¿Quiénes somos?</h2>
+          <div class="card-container">
+            <div class="profile-card">
+              <img src="img4.jpg" alt="Psicólogo 1" />
+              <h3>Lic. César Sánchez</h3>
+              <p>Psicólogo con enfoque integrativo y experiencia en acompañamiento emocional.</p>
+            </div>
+            <div class="profile-card">
+              <img src="img5.jpg" alt="Psicóloga 2" />
+              <h3>Mtra. Selene Alvara</h3>
+              <p>Especialista en orientación breve con enfoque empático y humano.</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="full-section">
+          <h2>Contacto</h2>
+          <form id="contact-form">
+            <input type="text" placeholder="Tu nombre" />
+            <input type="email" placeholder="Tu correo electrónico" />
+            <textarea rows="4" placeholder="Tu mensaje"></textarea>
+            <button type="submit">Enviar</button>
+          </form>
+        </section>
+      </div>
+
+    </div>
+  </div>
+
+
+  <script>
+    function sendToWhatsApp() {
+      const message = encodeURIComponent("Hola, me gustaría recibir orientación.");
+      const phoneNumber = "1234567890";
+      window.open(`https://wa.me/${phoneNumber}?text=${message}`, '_blank');
+    }
+
+    function openModal(type) {
+      const modal = document.getElementById('infoModal');
+      const simpleContent = document.getElementById('simpleModalContent');
+      const fullInfoContent = document.getElementById('fullInfoContent');
+
+      const title = document.getElementById('modalTitle');
+      const text = document.getElementById('modalText');
+
+      simpleContent.style.display = 'none';
+      fullInfoContent.style.display = 'none';
+
+      switch (type) {
+        case 'consentimiento':
+          title.innerText = 'Consentimiento Informado';
+          text.innerText = 'Este servicio no sustituye una terapia formal. Al continuar, aceptas recibir orientación breve por un profesional calificado en formato digital. Se respetará tu confidencialidad y puedes dejar de participar en cualquier momento.';
+          simpleContent.style.display = 'block';
+          break;
+        case 'descargo':
+          title.innerText = 'Descargo de Responsabilidad';
+          text.innerText = 'La orientación brindada es de carácter informativo y no constituye un diagnóstico o tratamiento clínico. En situaciones de emergencia o crisis grave, por favor acude a servicios profesionales presenciales.';
+          simpleContent.style.display = 'block';
+          break;
+        case 'privacidad':
+          title.innerText = 'Política de Privacidad';
+          text.innerText = 'Tus datos no serán compartidos con terceros. El contenido de los mensajes se usará solo para fines de seguimiento dentro del servicio. Usamos WhatsApp como medio de contacto, el cual tiene su propia política de privacidad.';
+          simpleContent.style.display = 'block';
+          break;
+        case 'info':
+        default:
+          fullInfoContent.style.display = 'block';
+          break;
+      }
+
+      modal.style.display = 'flex';
+    }
+
+    function closeModal() {
+      document.getElementById('infoModal').style.display = 'none';
+    }
+
+  </script>
+</body>
+
+</html>
