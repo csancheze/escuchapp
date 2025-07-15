@@ -6,16 +6,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Escuchapp</title>
   <style>
-    html, body {
-      margin: 0;
-      padding: 0;
-      font-family: Arial, sans-serif;
-      background-color: #ffffff;
-      color: #333;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-    }
+body, html {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  background-color: #ffffff;
+  color: #333;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden; 
+}
 
     header {
       display: flex;
@@ -32,13 +33,13 @@
       margin-right: 10px;
     }
 
-    .chat-container {
-      flex: 1 1 auto;
-      padding: 10px;
-      display: flex;
-      flex-direction: column;
-      overflow-y: auto;
-    }
+.chat-container {
+  flex: 1 1 auto;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
 
     .bubble {
       max-width: 75%;
@@ -58,13 +59,15 @@
       /* font-size: 0.9em; */
     }
 
-    .input-container {
-      display: flex;
-      padding: 10px;
-      border-top: 1px solid #ccc;
-      align-items: center;
-      justify-content: space-between;
-    }
+.input-container {
+  flex-shrink: 0;
+  padding: 10px;
+  border-top: 1px solid #ccc;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: white;
+}
 
     .send-button {
       background-color: #00c6a9;
