@@ -4,26 +4,37 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Escuchapp: orientación psicológica profesional vía WhatsApp. Atención rápida, cálida y empática.">
-  <meta name="keywords" content="consejería psicológica, orientación emocional, psicología en línea, WhatsApp, apoyo emocional">
-  <meta name="author" content="Psicólogo César Sánchez y Maestra Selene Alvara">
-  <title>Escuchapp</title>
-  <style>
-html, body {
-  margin: 0;
-  padding: 0;
-  height: 100dvh; /* usa dvh para móviles modernos */
-  overflow: hidden; /* evita scroll global */
-  font-family: Arial, sans-serif;
-}
+  <meta name="description"
+    content="ConsejoPsi: orientación psicológica profesional vía WhatsApp. Atención rápida, cálida y empática.">
+  <meta name="keywords"
+    content="consejería psicológica, orientación emocional, psicología en línea, WhatsApp, apoyo emocional,psicólogo en línea, terapia por WhatsApp, orientación psicológica, salud mental, atención psicológica online, ConsejoPsi, César Sánchez">
+  <meta name="author" content="Psic. César Fernando Sánchez Escuadra">
 
-body {
-  display: flex;
-  flex-direction: column;
-  background-color: #c4d4d3;
-  color: #333;
-}
-    header {
+  <meta property="og:title" content="ConsejoPsi | Psicólogo en Línea por WhatsApp">
+  <meta property="og:description"
+    content="Atención psicológica breve, ética y profesional directamente desde WhatsApp. Conoce más sobre el servicio.">
+  <meta property="og:image" content="https://psicesarsanchez.online/tu-imagen.png">
+  <meta property="og:url" content="https://psicesarsanchez.online">
+  <meta property="og:type" content="website">
+
+  <title>ConsejoPsi</title>
+  <style>
+    html,body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      overflow: hidden;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+      background-color: #c4d4d3;
+      color: #333;
+    }
+
+      header {
       display: flex;
       align-items: center;
       background-color: #00c6a9;
@@ -33,18 +44,18 @@ body {
       cursor: pointer;
     }
 
-    header img {
+      header img {
       height: 30px;
       margin-right: 10px;
     }
 
-.chat-container {
-  flex: 1;
-  overflow-y: auto; /* solo esta parte se scrollea */
-  padding: 10px;
-  display: flex;
-  flex-direction: column;
-}
+    .chat-container {
+      flex: 1;
+      overflow-y: auto;
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+    }
 
 
     .bubble {
@@ -66,15 +77,15 @@ body {
     }
 
 
-.input-container {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 10px;
-  border-top: 1px solid #ccc;
-  background-color: white;
-  flex-shrink: 0;
-}
+    .input-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px;
+      border-top: 1px solid #ccc;
+      background-color: white;
+      flex-shrink: 0;
+    }
 
     .send-button {
       background-color: #00c6a9;
@@ -186,6 +197,7 @@ body {
       background-color: #f2f2f2;
       padding: 15px;
       border-radius: 10px;
+      width:50%
     }
 
     .profile-card img {
@@ -217,11 +229,30 @@ body {
       border-radius: 5px;
       cursor: pointer;
     }
+
+    .modal-link {
+  color: #0077cc; /* Azul profesional */
+  text-decoration: none;
+  font-weight: 500;
+  cursor: pointer;
+  transition: color 0.2s ease-in-out, text-shadow 0.2s ease-in-out;
+}
+
+.modal-link:hover {
+  color: #005fa3;
+  text-shadow: 0 0 2px rgba(0, 119, 204, 0.4);
+}
+
+.modal-link:focus {
+  outline: 2px solid #005fa3;
+  outline-offset: 2px;
+  border-radius: 2px;
+}
   </style>
-    <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
   <script>
-    (function(){
-      emailjs.init("_fyhTOODMjUPojOZC"); 
+    (function () {
+      emailjs.init("_fyhTOODMjUPojOZC");
     })();
   </script>
 </head>
@@ -229,28 +260,34 @@ body {
 <body>
   <header onclick="openModal()">
     <img src="https://img.icons8.com/glyph-neue/64/hearing.png" alt="Logo" />
-    <h1 style="font-size: 20px;">Escuchapp</h1>
+    <h1 style="font-size: 20px;">ConsejoPsi</h1>
     <button button class="info-button" aria-label="Información" title="Más información" onclick="openModal('info')"> ℹ️
-</button>
+    </button>
   </header>
 
   <div class="chat-container">
     <div class="bubble bot">Hola 👋 ¿Te sientes abrumado, confundido o simplemente necesitas que alguien te escuche?
     </div>
-    <div class="bubble bot">En Escuchapp ofrecemos <strong>consejo psicológico</strong> humano, profesional y accesible
+    <div class="bubble bot">En ConsejoPsi ofrecemos <strong>consejo psicológico</strong> humano, profesional y accesible
       en minutos.</div>
     <div class="bubble bot">Estamos aquí para brindarte claridad, acompañamiento y orientación con empatía real.</div>
-    <div class="bubble bot legal">Antes de continuar, asegúrate de revisar nuestras políticas: <a
-        style="display: block;" href="#" onclick="openModal('consentimiento')">Consentimiento Informado</a> <a href="#"
-        onclick="openModal('descargo')">Descargo de Responsabilidad</a> <a style="display: block;" href="#"
-        onclick="openModal('privacidad')">Política de Privacidad</a></div>
+    <div class="bubble bot legal">
+      Antes de continuar, asegúrate de revisar nuestras políticas:
+        <a class="modal-link" style="display: block;" href="#" onclick="openModal('consentimiento')">Consentimiento Informado</a> 
+        <a href="#" class="modal-link" onclick="openModal('descargo')">Descargo de Responsabilidad</a> 
+        <a class="modal-link" style="display: block;" href="#" onclick="openModal('privacidad')">Política de Privacidad</a>
+        <a class="modal-link" style="display: block;" href="#"
+        onclick="openModal('politicas')">Políticas de atención</a>
+    </div>
     <div class="bubble bot legal">Con tu mensaje, confirmas que has leído y aceptas nuestras políticas.</div>
   </div>
 
-<div class="input-container">
-  <input type="text" id="userMessage" placeholder="Escribe tu mensaje..." value="Hola, me gustaría recibir orientación." style="flex: 1; padding: 10px; border: 1px solid #ccc; border-radius: 5px; font-family: inherit;" />
-  <button class="send-button" onclick="sendToWhatsApp()">&gt;</button>
-</div>
+  <div class="input-container">
+    <input type="text" id="userMessage" placeholder="Escribe tu mensaje..."
+      value="Hola, me gustaría recibir orientación."
+      style="flex: 1; padding: 10px; border: 1px solid #ccc; border-radius: 5px; font-family: inherit;" />
+    <button class="send-button" onclick="sendToWhatsApp()">&gt;</button>
+  </div>
 
   <div class="modal" id="infoModal">
     <div class="modal-content modal-scroll" id="modalContent">
@@ -269,9 +306,9 @@ body {
 
       <div id="fullInfoContent" style="display: none;">
         <section class="full-section">
-          <h2>Escuchapp</h2>
+          <h2>ConsejoPsi</h2>
           <p>Ofrecemos orientación psicológica profesional, cálida y accesible por WhatsApp en minutos.</p>
-          <img src="img1.jpg" alt="Escuchapp" />
+          <img src="img1.jpg" alt="ConsejoPsi" />
         </section>
 
         <section class="full-section">
@@ -285,7 +322,7 @@ body {
           <h2>Nuestro modelo</h2>
           <p>Brindamos orientación breve basada en principios de la terapia cognitivo-conductual y enfoques humanistas.
             Creemos en el poder de ser escuchado con empatía y respeto.</p>
-          <img src="img3.jpg" alt="Modelo" />
+          <img src="img3.jpg" alt="Modelo de atención" />
         </section>
 
         <section class="full-section">
@@ -293,31 +330,37 @@ body {
           <div class="card-container">
             <div class="profile-card">
               <img src="img4.jpg" alt="Psicólogo 1" />
-              <h3>Lic. César Sánchez</h3>
-              <p>Psicólogo con enfoque integrativo y experiencia en acompañamiento emocional.</p>
+              <h3>Psic. César Sánchez</h3>
+              <p>Psicólogo clínico con enfoque en terapia breve cognitivo-conductual, complementado con formación en terapia sistémica y psicoanálisis lacaniano. Su práctica integra la subjetividad y la cultura para ofrecer una atención compleja y centrada en la persona. Experto en adicciones, salud mental, violencia de pareja y problemas conductuales en adultos.</p>
             </div>
             <div class="profile-card">
               <img src="img5.jpg" alt="Psicóloga 2" />
               <h3>Mtra. Selene Alvara</h3>
-              <p>Especialista en orientación breve con enfoque empático y humano.</p>
+              <p>Maestra en Terapia Infantil. Experta en desarrollo infantil, educación sexual, abuso sexual, crianza respetuosa y salud mental infantil. Ofrece orientación profesional enfocada en las necesidades emocionales y psicológicas de niñas, niños y sus familias.</p>
             </div>
           </div>
         </section>
-  
 
-                  <section class="full-section"><a href="https://wa.me/+525560031903?text=Hola%2C%20me%20gustaría%20recibir%20orientación." target="_blank" style="background-color:#00c6a9; color:white; padding:10px 20px; border-radius:5px; text-decoration:none;">Habla con un orientador ahora</a></section>
+
+        <section class="full-section"><a
+            href="https://wa.me/+525560031903?text=Hola%2C%20me%20gustaría%20recibir%20orientación." target="_blank"
+            style="background-color:#00c6a9; color:white; padding:10px 20px; border-radius:5px; text-decoration:none;">Habla
+            con un orientador ahora</a>
+        </section>
+
+
         <section class="full-section">
           <h2>Contacto</h2>
 
           <form id="contact-form">
-              <input type="text" name="from_name" placeholder="Tu nombre" required />
-              <input type="email" name="reply_to" placeholder="Tu correo electrónico" required />
-              <input type="hidden" name="to_email" value="cesanchezesc@gmail.com">
-              <input type="hidden" name="to_name"  value="César Fernando Sánchez Escuadra">
-              <textarea name="message" rows="5" placeholder="Tu mensaje" required></textarea>
+            <input type="text" name="from_name" placeholder="Tu nombre" required />
+            <input type="email" name="reply_to" placeholder="Tu correo electrónico" required />
+            <input type="hidden" name="to_email" value="cesanchezesc@gmail.com">
+            <input type="hidden" name="to_name" value="César Fernando Sánchez Escuadra">
+            <textarea name="message" rows="5" placeholder="Tu mensaje" required></textarea>
             <button type="submit">Enviar</button>
           </form>
-         
+
         </section>
       </div>
 
@@ -326,12 +369,13 @@ body {
 
 
   <script>
-function sendToWhatsApp() {
-  const input = document.getElementById('userMessage');
-  const message = encodeURIComponent(input.value);
-  const phoneNumber = "+525560031903";
-  window.open(`https://wa.me/${phoneNumber}?text=${message}`, '_blank');
-}
+    let precio = 300
+    function sendToWhatsApp() {
+      const input = document.getElementById('userMessage');
+      const message = encodeURIComponent(input.value);
+      const phoneNumber = "+525560031903";
+      window.open(`https://wa.me/${phoneNumber}?text=${message}`, '_blank');
+    }
 
     function openModal(type) {
       const modal = document.getElementById('infoModal');
@@ -347,19 +391,43 @@ function sendToWhatsApp() {
       switch (type) {
         case 'consentimiento':
           title.innerText = 'Consentimiento Informado';
-          text.innerText = 'Este servicio no sustituye una terapia formal. Al continuar, aceptas recibir orientación breve por un profesional calificado en formato digital. Se respetará tu confidencialidad y puedes dejar de participar en cualquier momento.';
+          text.innerText = `Al hacer uso de este servicio, usted manifiesta su consentimiento informado y acepta los siguientes términos: El servicio de orientación psicológica ofrecido a través de esta plataforma tiene como objetivo brindar una intervención breve, inmediata y profesional, no sustituyendo procesos terapéuticos prolongados ni tratamientos médicos o psiquiátricos. El servicio se ofrece en línea, a través de la plataforma WhatsApp, por profesionales titulados en Psicología, quienes actuarán con base en su experiencia y juicio clínico. Usted reconoce que este servicio no está diseñado para atender emergencias psicológicas, crisis suicidas ni situaciones que requieran intervención presencial inmediata. En dichos casos, se le recomendará acudir a los servicios de emergencia o instituciones especializadas. Se hará todo lo posible por brindar atención oportuna. Sin embargo, el servicio funciona bajo demanda y está sujeto a disponibilidad. Si los profesionales se encuentran ocupados, se responderá tan pronto como sea posible. El monto sugerido por la orientación se comunicará al finalizar la sesión, basado en el tiempo invertido y la naturaleza de la atención brindada. Usted podrá elegir libremente el monto a aportar, hasta un máximo de ${precio} MXN por hora de atención. El uso continuo y reiterado del servicio sin realizar aportes podrá ser considerado un uso inapropiado. Nos reservamos el derecho de suspender la atención a usuarios que incurran en esta práctica.`
+;
           simpleContent.style.display = 'block';
           break;
         case 'descargo':
           title.innerText = 'Descargo de Responsabilidad';
-          text.innerText = 'La orientación brindada es de carácter informativo y no constituye un diagnóstico o tratamiento clínico. En situaciones de emergencia o crisis grave, por favor acude a servicios profesionales presenciales.';
+          text.innerText = "Este servicio no constituye un tratamiento psicológico formal ni reemplaza la atención presencial o continua de un especialista en salud mental. Las opiniones y orientaciones brindadas tienen un carácter informativo, preventivo y de contención inicial. Cualquier acción que usted decida tomar con base en nuestras sugerencias es de su exclusiva responsabilidad. En caso de requerir seguimiento, diagnóstico clínico, medicación o intervención de mayor profundidad, se le orientará a los canales pertinentes.";
           simpleContent.style.display = 'block';
           break;
         case 'privacidad':
           title.innerText = 'Política de Privacidad';
-          text.innerText = 'Tus datos no serán compartidos con terceros. El contenido de los mensajes se usará solo para fines de seguimiento dentro del servicio. Usamos WhatsApp como medio de contacto, el cual tiene su propia política de privacidad.';
+          text.innerText = "Nos comprometemos a proteger su privacidad. La información personal y los datos compartidos durante la orientación se mantendrán en estricta confidencialidad y no serán divulgados a terceros, salvo en los siguientes casos: cuando exista una obligación legal o requerimiento de autoridad competente; o cuando exista riesgo inminente para usted o para terceros, conforme al código ético profesional. No recopilamos datos sensibles a través de esta web, ni utilizamos cookies para fines de rastreo. Las conversaciones mantenidas por WhatsApp están sujetas a la política de privacidad de dicha plataforma. Usted tiene derecho a solicitar en cualquier momento el cese de la orientación o la eliminación de sus datos de contacto."
+;
           simpleContent.style.display = 'block';
           break;
+        case 'politicas':
+          title.innerText = 'Políticas de Atención';
+          text.innerText = `Información y Políticas de Atención
+
+        ❗ Descargo de responsabilidad
+        La orientación psicológica ofrecida a través de ConsejoPsi no sustituye un proceso de psicoterapia ni constituye una atención de urgencia ante crisis graves. Si estás en una situación de riesgo o emergencia, te recomendamos acudir a los servicios de emergencia psicológica de tu localidad.
+
+        💬 Sobre la atención y tiempos de respuesta
+        Nuestro objetivo es ofrecer atención breve, profesional y con la mayor inmediatez posible, sin necesidad de agendar. Sin embargo, este servicio opera bajo disponibilidad, por lo que, si nos encontramos atendiendo a otras personas, es posible que tu mensaje no sea respondido de inmediato. En cualquier caso, te responderemos tan pronto como nos sea posible.
+
+        💳 Sistema de pago voluntario y solidario
+        El servicio de ConsejoPsi opera bajo un modelo de pago posterior, libre y sugerido. Esto significa que, una vez recibida tu orientación, podrás aportar el monto que consideres justo con base en el tiempo de atención y el valor recibido.
+        - El límite máximo sugerido es de ${precio} MXN por hora de atención, y el monto específico se determinará según el caso, tiempo invertido y posibilidades del usuario.
+        - Tu aportación nos permite seguir ofreciendo atención accesible y profesional a quienes más lo necesitan.
+
+        🚫 Uso ético del servicio
+        Con el fin de asegurar la sostenibilidad de este proyecto, nos reservamos el derecho de limitar o suspender la atención a usuarios que utilicen el servicio de manera recurrente sin realizar aportaciones. Valoramos profundamente tu confianza, y pedimos que este espacio sea utilizado de forma respetuosa y solidaria.`;
+
+          simpleContent.style.display = 'block';
+          break;
+
+
         case 'info':
         default:
           fullInfoContent.style.display = 'block';
@@ -373,18 +441,18 @@ function sendToWhatsApp() {
       document.getElementById('infoModal').style.display = 'none';
     }
 
-      document.getElementById('contactForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-    
-    emailjs.sendForm('service_8vnmm7t', 'template_0tr1mwu', this)
-      .then(function() {
-        alert("Mensaje enviado correctamente. Gracias por tu mensaje.");
-        e.target.reset();
-      }, function(error) {
-        console.log(error);
-        alert("Hubo un error al enviar el mensaje. Intenta de nuevo.");
-      });
-  });
+    document.getElementById('contactForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      emailjs.sendForm('service_8vnmm7t', 'template_0tr1mwu', this)
+        .then(function () {
+          alert("Mensaje enviado correctamente. Gracias por tu mensaje.");
+          e.target.reset();
+        }, function (error) {
+          console.log(error);
+          alert("Hubo un error al enviar el mensaje. Intenta de nuevo.");
+        });
+    });
 
   </script>
 </body>
