@@ -4,6 +4,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Escuchapp: orientación psicológica profesional vía WhatsApp. Atención rápida, cálida y empática.">
+  <meta name="keywords" content="consejería psicológica, orientación emocional, psicología en línea, WhatsApp, apoyo emocional">
+  <meta name="author" content="Psicólogo César Sánchez y Maestra Selene Alvara">
   <title>Escuchapp</title>
   <style>
 html, body {
@@ -17,7 +20,7 @@ html, body {
 body {
   display: flex;
   flex-direction: column;
-  background-color: #fff;
+  background-color: #c4d4d3;
   color: #333;
 }
     header {
@@ -86,15 +89,15 @@ body {
 
     .info-button {
       position: absolute;
-      top: 10px;
-      right: 10px;
+      top: 7px;
+      right: 15px;
       background-color: #00c6a9;
       color: white;
       border: none;
       border-radius: 50%;
       width: 30px;
       height: 30px;
-      font-size: 18px;
+      font-size: 25px;
       cursor: pointer;
     }
 
@@ -215,13 +218,20 @@ body {
       cursor: pointer;
     }
   </style>
+    <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+  <script>
+    (function(){
+      emailjs.init("_fyhTOODMjUPojOZC"); 
+    })();
+  </script>
 </head>
 
 <body>
   <header onclick="openModal()">
     <img src="https://img.icons8.com/glyph-neue/64/hearing.png" alt="Logo" />
     <h1 style="font-size: 20px;">Escuchapp</h1>
-    <button class="info-button">!</button>
+    <button button class="info-button" aria-label="Información" title="Más información" onclick="openModal('info')"> ℹ️
+</button>
   </header>
 
   <div class="chat-container">
@@ -237,10 +247,10 @@ body {
     <div class="bubble bot legal">Con tu mensaje, confirmas que has leído y aceptas nuestras políticas.</div>
   </div>
 
-  <div class="input-container">
-    <span>Hola, me gustaría recibir orientación.</span>
-    <button class="send-button" onclick="sendToWhatsApp()">&gt;</button>
-  </div>
+<div class="input-container">
+  <input type="text" id="userMessage" placeholder="Escribe tu mensaje..." value="Hola, me gustaría recibir orientación." style="flex: 1; padding: 10px; border: 1px solid #ccc; border-radius: 5px; font-family: inherit;" />
+  <button class="send-button" onclick="sendToWhatsApp()">&gt;</button>
+</div>
 
   <div class="modal" id="infoModal">
     <div class="modal-content modal-scroll" id="modalContent">
@@ -293,15 +303,21 @@ body {
             </div>
           </div>
         </section>
+  
 
+                  <section class="full-section"><a href="https://wa.me/+525560031903?text=Hola%2C%20me%20gustaría%20recibir%20orientación." target="_blank" style="background-color:#00c6a9; color:white; padding:10px 20px; border-radius:5px; text-decoration:none;">Habla con un orientador ahora</a></section>
         <section class="full-section">
           <h2>Contacto</h2>
+
           <form id="contact-form">
-            <input type="text" placeholder="Tu nombre" />
-            <input type="email" placeholder="Tu correo electrónico" />
-            <textarea rows="4" placeholder="Tu mensaje"></textarea>
+              <input type="text" name="from_name" placeholder="Tu nombre" required />
+              <input type="email" name="reply_to" placeholder="Tu correo electrónico" required />
+              <input type="hidden" name="to_email" value="cesanchezesc@gmail.com">
+              <input type="hidden" name="to_name"  value="César Fernando Sánchez Escuadra">
+              <textarea name="message" rows="5" placeholder="Tu mensaje" required></textarea>
             <button type="submit">Enviar</button>
           </form>
+         
         </section>
       </div>
 
@@ -310,11 +326,12 @@ body {
 
 
   <script>
-    function sendToWhatsApp() {
-      const message = encodeURIComponent("Hola, me gustaría recibir orientación.");
-      const phoneNumber = "+525560031903";
-      window.open(`https://wa.me/${phoneNumber}?text=${message}`, '_blank');
-    }
+function sendToWhatsApp() {
+  const input = document.getElementById('userMessage');
+  const message = encodeURIComponent(input.value);
+  const phoneNumber = "+525560031903";
+  window.open(`https://wa.me/${phoneNumber}?text=${message}`, '_blank');
+}
 
     function openModal(type) {
       const modal = document.getElementById('infoModal');
@@ -355,6 +372,19 @@ body {
     function closeModal() {
       document.getElementById('infoModal').style.display = 'none';
     }
+
+      document.getElementById('contactForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    emailjs.sendForm('service_8vnmm7t', 'template_0tr1mwu', this)
+      .then(function() {
+        alert("Mensaje enviado correctamente. Gracias por tu mensaje.");
+        e.target.reset();
+      }, function(error) {
+        console.log(error);
+        alert("Hubo un error al enviar el mensaje. Intenta de nuevo.");
+      });
+  });
 
   </script>
 </body>
