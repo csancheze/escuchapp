@@ -477,12 +477,12 @@
         });
     });
 
-        function scrollInputIntoView() {
-      const input = document.getElementById('userInput');
+    const input = document.getElementById("userInput");
+    input.addEventListener("focus", () => {
       setTimeout(() => {
-        input.scrollIntoView({ behavior: 'smooth', block: 'end' });
-      }, 300);
-    }
+        input.scrollIntoView({ behavior: "smooth", block: "end" });
+      }, 300); 
+    });
 
   </script>
 </body>
