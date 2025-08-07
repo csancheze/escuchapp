@@ -55,6 +55,7 @@
       padding: 10px;
       display: flex;
       flex-direction: column;
+      height: 100dvh;
     }
 
 
@@ -78,6 +79,8 @@
 
 
     .input-container {
+      position: sticky;
+      bottom: 0;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -288,7 +291,7 @@
     <div class="bubble bot legal">Con tu mensaje, confirmas que has leído y aceptas nuestras políticas.</div>
   </div>
 
-  <div class="input-container">
+  <div id="user-input" class="input-container">
     <input type="text" id="userMessage" placeholder="Escribe tu mensaje..."
       value="Hola, me gustaría recibir orientación."
       style="flex: 1; padding: 10px; border: 1px solid #ccc; border-radius: 5px; font-family: inherit;" />
@@ -466,6 +469,13 @@
           alert("Hubo un error al enviar el mensaje. Intenta de nuevo.");
         });
     });
+
+        function scrollInputIntoView() {
+      const input = document.getElementById('userInput');
+      setTimeout(() => {
+        input.scrollIntoView({ behavior: 'smooth', block: 'end' });
+      }, 300);
+    }
 
   </script>
 </body>
