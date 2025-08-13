@@ -289,6 +289,7 @@
     <div class="bubble bot">En ConsejoPsi ofrecemos <strong>consejo psicológico</strong> humano, profesional y accesible
       en minutos.</div>
     <div class="bubble bot">Estamos aquí para brindarte claridad, acompañamiento y orientación con empatía real.</div>
+    <div class="bubble bot">Estos son nuestros <a class="modal-link" style="display: inline;" href="#" onclick="openModal('servicios')">servicios</a>.</div>        
     <div class="bubble bot legal">
       Antes de continuar, asegúrate de revisar nuestras políticas:
         <a class="modal-link" style="display: block;" href="#" onclick="openModal('consentimiento')">Consentimiento Informado</a> 
@@ -395,6 +396,7 @@
 
   <script>
     let precio = 300
+    let precioMin = 150
     function sendToWhatsApp() {
       const input = document.getElementById('userMessage');
       const message = encodeURIComponent(input.value);
@@ -416,7 +418,32 @@
       switch (type) {
         case 'consentimiento':
           title.innerText = 'Consentimiento Informado';
-          text.innerText = `Al hacer uso de este servicio, usted manifiesta su consentimiento informado y acepta los siguientes términos: El servicio de orientación psicológica ofrecido a través de esta plataforma tiene como objetivo brindar una intervención breve, inmediata y profesional, no sustituyendo procesos terapéuticos prolongados ni tratamientos médicos o psiquiátricos. El servicio se ofrece en línea, únicamente para mayores de edad, a través de la plataforma WhatsApp, por profesionales titulados en Psicología, quienes actuarán con base en su experiencia y juicio clínico. Usted reconoce que este servicio no está diseñado para atender emergencias psicológicas, crisis suicidas ni situaciones que requieran intervención presencial inmediata. En dichos casos, se le recomendará acudir a los servicios de emergencia o instituciones especializadas. Se hará todo lo posible por brindar atención oportuna. Sin embargo, el servicio funciona bajo demanda y está sujeto a disponibilidad. Si los profesionales se encuentran ocupados, se responderá tan pronto como sea posible. El monto sugerido por la orientación se comunicará al finalizar la sesión, basado en el tiempo invertido y la naturaleza de la atención brindada. Usted podrá elegir libremente el monto a aportar, hasta un máximo de ${precio} MXN por hora de atención. El uso continuo y reiterado del servicio sin realizar aportes podrá ser considerado un uso inapropiado. Nos reservamos el derecho de suspender la atención a usuarios que incurran en esta práctica.`
+          text.innerText = `Al hacer uso de este servicio, usted manifiesta su consentimiento informado y acepta los siguientes términos: 
+          
+          El servicio de orientación psicológica ofrecido a través de esta plataforma tiene como objetivo brindar una intervención breve, inmediata y profesional, no sustituyendo procesos terapéuticos prolongados ni tratamientos médicos o psiquiátricos. 
+          
+          El servicio se ofrece en línea, únicamente para mayores de edad, a través de la plataforma WhatsApp, por profesionales titulados en Psicología, quienes actuarán con base en su experiencia y juicio clínico. 
+          
+          Usted reconoce que este servicio no está diseñado para atender emergencias psicológicas, crisis suicidas ni situaciones que requieran intervención presencial inmediata. En dichos casos, se le recomendará acudir a los servicios de emergencia o instituciones especializadas. 
+          
+          Se hará todo lo posible por brindar atención oportuna. Sin embargo, el servicio funciona bajo demanda y está sujeto a disponibilidad. Si los profesionales se encuentran ocupados, se responderá tan pronto como sea posible. 
+          
+          El monto sugerido por la orientación se comunicará al finalizar la sesión, basado en el tiempo invertido y la naturaleza de la atención brindada. Usted podrá elegir libremente el monto a aportar, desde $100 MXN por nuestro servicio más básico hasta un máximo de ${precio + 100} MXN por hora de atención. 
+          
+          El uso continuo y reiterado del servicio sin realizar aportes podrá ser considerado un uso inapropiado. Nos reservamos el derecho de suspender la atención a usuarios que incurran en esta práctica.`
+;
+          simpleContent.style.display = 'block';
+          break;
+
+        case 'servicios':
+          title.innerText = 'Servicios';
+          text.innerText = `
+            Consejo 100: 1 Pregunta - 1 Respuesta. Usted nos hace una pregunta y nosotros le preparamos una respuesta cálida, humana y profesional en un máximo de 24 horas.
+            
+            Consejo breve libre: Lea y Conteste cuando tenga tiempo. Nosotros contestaremos a sus mensajes en menos de 24 horas y usted tendrá 8 horas para responder antes de que se dé por terminada la consulta. 
+             
+            Consejo breve premium: Respuestas inmediata del consejero desde que comienza la conversación (max. 10 min en lo que el consejero prepara la respuesta) .
+            `
 ;
           simpleContent.style.display = 'block';
           break;
@@ -445,9 +472,13 @@
 
         💳 Sistema de pago voluntario y solidario
         El servicio de ConsejoPsi opera bajo un modelo de pago posterior, libre y sugerido. Esto significa que, una vez recibida tu orientación, podrás aportar el monto que consideres justo con base en el tiempo de atención y el valor recibido.
-        - El límite máximo sugerido es de ${precio} MXN por hora de atención, y el monto específico se determinará según el caso, tiempo invertido y posibilidades del usuario.
+        - Para el modelo de atención libre (respuesta no inmediata) el limite minimo de pago es de $${precioMin} MXN y el límite máximo sugerido es de $${precio} MXN.
+        - Para el modelo de atención premium (respuesta máximo 10 minutos en responder dependiendo del caso) el limite mínimo de pago es de $${precioMin + 50} MXN y límite máximo sugerido es de $${precio+100} MXN.
+        - El monto específico para ambos modelos de atención se determinará según el caso, tiempo invertido y posibilidades del usuario.
+        - En caso de que el cliente pague por adelantado, el servicio se otorgara según la disponibilidad. Asi mismo, el consejero podrá sugerir un nuevo pago al final en caso de que haya una diferencia entre el servicio solicitado y el nivel de atención que requirió el cliente.
+        - Las aportaciones voluntarias y pagos hechos a través de Ko-fi no fungen como pagos por adelantado para ninguno de los servicios.
         - Tu aportación nos permite seguir ofreciendo atención accesible y profesional a quienes más lo necesitan.
-
+        
         🚫 Uso ético del servicio
         Con el fin de asegurar la sostenibilidad de este proyecto, nos reservamos el derecho de limitar o suspender la atención a usuarios que utilicen el servicio de manera recurrente sin realizar aportaciones. Valoramos profundamente tu confianza, y pedimos que este espacio sea utilizado de forma respetuosa y solidaria.`;
 
