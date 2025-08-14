@@ -20,264 +20,16 @@
   <link rel="apple-touch-icon" sizes="180x180" href="/favicon.png">
 
   <title>ConsejoPsi</title>
-  <style>
-    html,body {
-      margin: 0;
-      padding: 0;
-      height: 100dvh;
-      overflow: hidden;
-      font-family: Arial, sans-serif;
-    }
-
-    body {
-      display: flex;
-      flex-direction: column;
-      background-color: #c4d4d3;
-      color: #333;
-    }
-
-      header {
-      display: flex;
-      align-items: center;
-      background-color: #00c6a9;
-      padding: 10px;
-      color: white;
-      height: 30px;
-      cursor: pointer;
-    }
-
-      header img {
-      height: 30px;
-      margin-right: 10px;
-    }
-
-    .chat-container {
-      flex: 1;
-      overflow-y: auto;
-      padding: 10px;
-      display: flex;
-      flex-direction: column;
-      height: 100dvh;
-    }
-
-
-    .bubble {
-      max-width: 75%;
-      padding: 10px;
-      margin-bottom: 10px;
-      border-radius: 10px;
-      line-height: 1.4;
-    }
-
-    .bot {
-      background-color: #d2f4f1;
-      align-self: flex-start;
-    }
-
-    .legal {
-      background-color: #d2f4f1;
-      /* font-size: 0.9em; */
-    }
-
-
-    .input-container {
-      position: sticky;
-      bottom: 0;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 10px;
-      border-top: 1px solid #ccc;
-      background-color: white;
-      flex-shrink: 0;
-    }
-
-    .black-rectangle {
-      height:75px;
-      background-color:black
-    }
-
-    .send-button {
-      background-color: #00c6a9;
-      color: white;
-      border: none;
-      padding: 10px 15px;
-      border-radius: 50%;
-      font-size: 18px;
-      cursor: pointer;
-      margin-left: 10px;
-    }
-
-    .info-button {
-      position: absolute;
-      top: 7px;
-      right: 15px;
-      background-color: #00c6a9;
-      color: white;
-      border: none;
-      border-radius: 50%;
-      width: 30px;
-      height: 30px;
-      font-size: 25px;
-      cursor: pointer;
-    }
-
-    .modal {
-      display: none;
-      flex-direction: column;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0, 0, 0, 0.5);
-      justify-content: center;
-      align-items: center;
-    }
-
-    .modal-content {
-      background-color: white;
-      padding: 20px;
-      border-radius: 10px;
-      max-width: 90%;
-    }
-
-    .accept-button {
-      background-color: #00c6a9;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      font-size: 20px;
-      padding: 10px;
-      cursor: pointer;
-    }
-
-    .close-modal-button {
-      color: black;
-      background-color: white;
-      border: none;
-      border-radius: 5px;
-      font-size: 15px;
-      padding: 5px;
-      cursor: pointer;
-      position: fixed;
-      margin-right: 6px;
-    }
-
-    .modal-scroll {
-      overflow-y: auto;
-      max-height: 90vh;
-      width: 95%;
-      border-radius: 10px;
-      padding: 20px;
-    }
-
-    .full-section {
-      padding: 20px 0;
-      border-bottom: 1px solid #ccc;
-      text-align: center;
-    }
-
-    .full-section img {
-      max-width: 100%;
-      height: auto;
-      border-radius: 10px;
-      margin-top: 10px;
-    }
-
-    .card-container {
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
-      justify-content: space-around;
-    }
-
-    @media (min-width: 768px) {
-      .card-container {
-        flex-direction: row;
-        justify-content: center;
-      }
-    }
-
-
-    .profile-card {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      background-color: #f2f2f2;
-      padding: 15px;
-      border-radius: 10px;
-
-    }
-
-    @media (min-width: 768px) {
-      .profile-card {
-         width:50%
-      }
-    }
-
-    .profile-card img {
-      border-radius: 50%;
-      width: 100px;
-      height: 100px;
-    }
-
-    #contact-form {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      margin-top: 10px;
-    }
-
-    #contact-form input,
-    #contact-form textarea {
-      padding: 10px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      font-family: inherit;
-    }
-
-    #contact-form button {
-      background-color: #00c6a9;
-      color: white;
-      border: none;
-      padding: 10px;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-
-    .modal-link {
-  color: #0077cc; /* Azul profesional */
-  text-decoration: none;
-  font-weight: 500;
-  cursor: pointer;
-  transition: color 0.2s ease-in-out, text-shadow 0.2s ease-in-out;
-}
-
-.modal-link:hover {
-  color: #005fa3;
-  text-shadow: 0 0 2px rgba(0, 119, 204, 0.4);
-}
-
-.modal-link:focus {
-  outline: 2px solid #005fa3;
-  outline-offset: 2px;
-  border-radius: 2px;
-}
-  </style>
+  <link rel="stylesheet" href="style.css">
   <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
-  <script>
-    (function () {
-      emailjs.init("_fyhTOODMjUPojOZC");
-    })();
-  </script>
+
 </head>
 
 <body>
   <header onclick="openModal()">
-    <img src="pic.png" style="width:35px ;height:35px;border-radius: 50%;"alt="Logo" />
-    <h1 style="font-size: 20px;">ConsejoPsi 
-     <!-- <img src="icon.png" style="height:20px; width:20px" alt="Logo" />  -->
+    <img src="pic.png" style="width:35px ;height:35px;border-radius: 50%;" alt="Logo" />
+    <h1 style="font-size: 20px;">ConsejoPsi
+      <!-- <img src="icon.png" style="height:20px; width:20px" alt="Logo" />  -->
     </h1>
     <button button class="info-button" aria-label="Información" title="Más información" onclick="openModal('info')"> ℹ️
     </button>
@@ -289,14 +41,16 @@
     <div class="bubble bot">En ConsejoPsi ofrecemos <strong>consejo psicológico</strong> humano, profesional y accesible
       en minutos.</div>
     <div class="bubble bot">Estamos aquí para brindarte claridad, acompañamiento y orientación con empatía real.</div>
-    <div class="bubble bot">Estos son nuestros <a class="modal-link" style="display: inline;" href="#" onclick="openModal('servicios')">servicios</a>.</div>        
+    <div class="bubble bot">Estos son nuestros <a class="modal-link" style="display: inline;" href="#"
+        onclick="openModal('servicios')">servicios</a>.</div>
     <div class="bubble bot legal">
       Antes de continuar, asegúrate de revisar nuestras políticas:
-        <a class="modal-link" style="display: block;" href="#" onclick="openModal('consentimiento')">Consentimiento Informado</a> 
-        <a href="#" class="modal-link" onclick="openModal('descargo')">Descargo de Responsabilidad</a> 
-        <a class="modal-link" style="display: block;" href="#" onclick="openModal('privacidad')">Política de Privacidad</a>
-        <a class="modal-link" style="display: block;" href="#"
-        onclick="openModal('politicas')">Políticas de atención</a>
+      <a class="modal-link" style="display: block;" href="#" onclick="openModal('consentimiento')">Consentimiento
+        Informado</a>
+      <a href="#" class="modal-link" onclick="openModal('descargo')">Descargo de Responsabilidad</a>
+      <a class="modal-link" style="display: block;" href="#" onclick="openModal('privacidad')">Política de
+        Privacidad</a>
+      <a class="modal-link" style="display: block;" href="#" onclick="openModal('politicas')">Políticas de atención</a>
     </div>
     <div class="bubble bot legal">Con tu mensaje, confirmas que has leído y aceptas nuestras políticas.</div>
   </div>
@@ -307,7 +61,7 @@
       style="flex: 1; padding: 10px; border: 1px solid #ccc; border-radius: 5px; font-family: inherit;" />
     <button class="send-button" onclick="sendToWhatsApp()">&gt;</button>
   </div>
-<!-- 
+  <!-- 
   <div class="black-rectangle"></div> -->
 
   <div class="modal" id="infoModal">
@@ -328,8 +82,15 @@
       <div id="fullInfoContent" style="display: none;">
         <section class="full-section">
           <h2>ConsejoPsi</h2>
-          <h3>"Orientación psicológica breve en línea, con calidez y experiencia profesional, para quienes buscan apoyo accesible y humano."</h3>
-          <p>En ConsejoPsi, creemos que la salud mental necesita un espacio humano, accesible y empático. Ofrecemos orientación psicológica breve en línea, pensada como un puente entre la información general que se encuentra en internet o en alternativas tecnológicas, y el compromiso más intenso de la terapia formal. Con más de 13 años de experiencia atendiendo en instituciones y en práctica privada, brindamos un acompañamiento cercano, seguro y profesional. Nuestro objetivo es escuchar, comprender y ofrecer orientación que realmente responda a la persona que está del otro lado, manteniendo la calidad y calidez que no se encuentra en formatos impersonales.</p>
+          <h3>"Orientación psicológica breve en línea, con calidez y experiencia profesional, para quienes buscan apoyo
+            accesible y humano."</h3>
+          <p>En ConsejoPsi, creemos que la salud mental necesita un espacio humano, accesible y empático. Ofrecemos
+            orientación psicológica breve en línea, pensada como un puente entre la información general que se encuentra
+            en internet o en alternativas tecnológicas, y el compromiso más intenso de la terapia formal. Con más de 13
+            años de experiencia atendiendo en instituciones y en práctica privada, brindamos un acompañamiento cercano,
+            seguro y profesional. Nuestro objetivo es escuchar, comprender y ofrecer orientación que realmente responda
+            a la persona que está del otro lado, manteniendo la calidad y calidez que no se encuentra en formatos
+            impersonales.</p>
           <img src="img1.jpg" alt="ConsejoPsi" />
         </section>
 
@@ -340,11 +101,12 @@
           <ul>
             <li>- Orientación psicológica breve y accesible, 100% en línea.</li><br>
             <li>- Escucha empática y trato humano, respaldado por más de 13 años de experiencia profesional.</li><br>
-            <li>- Un puente accesible entre “buscar en internet” y “acudir a terapia”, evitando que te quedes sin apoyo.</li><br>
+            <li>- Un puente accesible entre “buscar en internet” y “acudir a terapia”, evitando que te quedes sin apoyo.
+            </li><br>
             <li>- Uso de soluciones digitales para acercar la atención sin perder el contacto humano.</li><br>
             <li>- Atención segura y confiable para quienes buscan un primer apoyo o prevención.</li>
           </ul>
-</p>
+          </p>
           <img src="img2.jpg" alt="Cómo funciona" />
         </section>
 
@@ -355,23 +117,169 @@
           <img src="img3.jpg" alt="Modelo de atención" />
         </section>
 
+        <section id="faq" aria-labelledby="faq-title">
+          <h2 id="faq-title">Preguntas frecuentes</h2>
+
+          <div class="faq-list">
+            <!-- FAQ 1 -->
+            <details class="faq-item">
+              <summary>
+                <h3>¿Qué es el consejo breve psicológico?</h3>
+              </summary>
+              <div class="faq-content">
+                <p>Es una orientación profesional, breve y focalizada, brindada por psicólogos con experiencia. Su
+                  objetivo es ofrecer claridad, contención y pasos prácticos ante una situación puntual, sin requerir el
+                  compromiso de un proceso terapéutico formal.</p>
+              </div>
+            </details>
+
+            <!-- FAQ 2 -->
+            <details class="faq-item">
+              <summary>
+                <h3>¿Qué no hacemos?</h3>
+              </summary>
+              <div class="faq-content">
+                <p>No realizamos diagnósticos clínicos formales ni prescribimos medicación. Tampoco sustituimos un
+                  tratamiento psicológico o psiquiátrico continuado, ni atendemos emergencias o crisis con riesgo
+                  inminente. En esos casos, recomendamos acudir a servicios de urgencia o a profesionales presenciales.
+                </p>
+              </div>
+            </details>
+
+            <!-- FAQ 3 -->
+            <details class="faq-item">
+              <summary>
+                <h3>¿Cómo funciona el servicio?</h3>
+              </summary>
+              <div class="faq-content">
+                <ol>
+                  <li>Nos envías un mensaje por WhatsApp con tu situación.</li>
+                  <li>Un profesional te responde con contención y orientación breve.</li>
+                  <li>Al finalizar, si se requiere, te sugerimos próximos pasos o referencias.</li>
+                </ol>
+                <p>Trabajamos por WhatsApp para mantener la atención cercana, práctica y accesible.</p>
+              </div>
+            </details>
+
+            <!-- FAQ 4 -->
+            <details class="faq-item">
+              <summary>
+                <h3>¿Quiénes brindan la orientación?</h3>
+              </summary>
+              <div class="faq-content">
+                <p>Psic. César Sánchez y Mtra. Selene Alvara, ambos con posgrado en Psicología y más de 13 años de
+                  experiencia en instituciones y práctica privada. Atendemos desde población adulta joven hasta adultos,
+                  y brindamos guía a madres, padres y cuidadores en temas infantiles.</p>
+              </div>
+            </details>
+
+            <!-- FAQ 5 -->
+            <details class="faq-item">
+              <summary>
+                <h3>¿Cuáles son los tiempos de respuesta?</h3>
+              </summary>
+              <div class="faq-content">
+                <p>Intentamos responder con la mayor inmediatez posible. Sin embargo, operamos bajo demanda y
+                  disponibilidad; si estamos atendiendo, responderemos en cuanto podamos. Gracias por tu comprensión.
+                </p>
+              </div>
+            </details>
+
+            <!-- FAQ 6 -->
+            <details class="faq-item">
+              <summary>
+                <h3>¿Cómo se realizan los pagos y cuál es el costo?</h3>
+              </summary>
+              <div class="faq-content">
+                <p>Usamos un modelo de <strong>pago posterior, libre y sugerido</strong>. Al terminar la orientación,
+                  puedes aportar el monto que consideres justo según el tiempo y el valor recibido, con un tope máximo
+                  por hora publicado en nuestras <a href="#" class="modal-link"
+                    onclick="openModal('politicas')">Políticas de atención</a>.</p>
+                <p>Medios de pago disponibles: PayPal, Ko-fi y otros que te compartiremos al finalizar la orientación.
+                </p>
+              </div>
+            </details>
+
+            <!-- FAQ 7 -->
+            <details class="faq-item">
+              <summary>
+                <h3>¿Quién puede usar el servicio?</h3>
+              </summary>
+              <div class="faq-content">
+                <p>Está dirigido exclusivamente a <strong>personas mayores de 18 años</strong>. Para orientación
+                  relacionada con niñas, niños o adolescentes, la comunicación debe gestionarla su madre, padre o tutor
+                  legal.</p>
+              </div>
+            </details>
+
+            <!-- FAQ 8 -->
+            <details class="faq-item">
+              <summary>
+                <h3>¿Qué pasa si necesito más que orientación breve?</h3>
+              </summary>
+              <div class="faq-content">
+                <p>Si detectamos que necesitas un proceso terapéutico formal, evaluación clínica o intervención
+                  presencial, te lo diremos con honestidad y te ayudaremos con referencias adecuadas.</p>
+              </div>
+            </details>
+
+            <!-- FAQ 9 -->
+            <details class="faq-item">
+              <summary>
+                <h3>¿Cómo protegen mi confidencialidad y datos?</h3>
+              </summary>
+              <div class="faq-content">
+                <p>Mantenemos la confidencialidad profesional y tratamos tus datos con responsabilidad. Consulta nuestra
+                  <a href="#" class="modal-link" onclick="openModal('privacidad')">Política de Privacidad</a> y el <a
+                    href="#" class="modal-link" onclick="openModal('consentimiento')">Consentimiento Informado</a> para
+                  conocer excepciones legales y éticas (riesgo inminente, requerimientos de autoridad, etc.).</p>
+              </div>
+            </details>
+
+            <!-- FAQ 10 -->
+            <details class="faq-item">
+              <summary>
+                <h3>¿Qué hago si estoy en una crisis o emergencia?</h3>
+              </summary>
+              <div class="faq-content">
+                <p>Este servicio no atiende urgencias. Si hay riesgo para ti o terceros, acude de inmediato a los
+                  servicios de emergencia de tu localidad o líneas de ayuda especializadas.</p>
+              </div>
+            </details>
+          </div>
+        </section>
+
         <section class="full-section">
           <h2>¿Quiénes somos?</h2>
-          <p>`Somos dos profesionales con posgrados en Psicología y más de 13 años de experiencia brindando atención psicológica en instituciones, organizaciones y en nuestra práctica privada. 
-          <br><br>
-          A lo largo de estos años, hemos acompañado a personas de distintas edades —desde niños hasta adultos— en procesos de orientación, apoyo emocional y trabajo terapéutico. Nuestra formación integra diferentes enfoques, lo que nos permite adaptar la atención a las necesidades específicas de cada persona. Más allá de los modelos teóricos, nuestro enfoque es centrado en la persona, sirviendonos de los conocimientos y herramientas que sea más apropiados caso por caso. 
-          <br><br>
-          Creemos profundamente en la importancia de hacer la psicología más accesible, empática y cercana. Por eso creamos este espacio: para ofrecer una alternativa humana frente a las respuestas impersonales de la inteligencia artificial o los sistemas de atención tradicionales, que muchas veces no logran responder a las condiciones de la realidad cotidiana.`</p>
+          <p>`Somos dos profesionales con posgrados en Psicología y más de 13 años de experiencia brindando atención
+            psicológica en instituciones, organizaciones y en nuestra práctica privada.
+            <br><br>
+            A lo largo de estos años, hemos acompañado a personas de distintas edades —desde niños hasta adultos— en
+            procesos de orientación, apoyo emocional y trabajo terapéutico. Nuestra formación integra diferentes
+            enfoques, lo que nos permite adaptar la atención a las necesidades específicas de cada persona. Más allá de
+            los modelos teóricos, nuestro enfoque es centrado en la persona, sirviendonos de los conocimientos y
+            herramientas que sea más apropiados caso por caso.
+            <br><br>
+            Creemos profundamente en la importancia de hacer la psicología más accesible, empática y cercana. Por eso
+            creamos este espacio: para ofrecer una alternativa humana frente a las respuestas impersonales de la
+            inteligencia artificial o los sistemas de atención tradicionales, que muchas veces no logran responder a las
+            condiciones de la realidad cotidiana.`
+          </p>
           <div class="card-container">
             <div class="profile-card">
               <img src="img4.jpg" alt="Psicólogo 1" />
               <h3>Psic. César Sánchez</h3>
-              <p>Psicólogo clínico con enfoque en terapia breve cognitivo-conductual, complementado con formación en terapia sistémica y psicoanálisis lacaniano. Su práctica integra la subjetividad y la cultura para ofrecer una atención compleja y centrada en la persona. Experto en adicciones, salud mental, violencia de pareja y problemas conductuales en adultos.</p>
+              <p>Psicólogo clínico con enfoque en terapia breve cognitivo-conductual, complementado con formación en
+                terapia sistémica y psicoanálisis lacaniano. Su práctica integra la subjetividad y la cultura para
+                ofrecer una atención compleja y centrada en la persona. Experto en adicciones, salud mental, violencia
+                de pareja y problemas conductuales en adultos.</p>
             </div>
             <div class="profile-card">
               <img src="img5.jpg" alt="Psicóloga 2" />
               <h3>Mtra. Selene Alvara</h3>
-              <p>Maestra en Terapia Infantil. Experta en desarrollo infantil, educación sexual, abuso sexual, crianza respetuosa y salud mental infantil. Ofrece orientación profesional enfocada en las necesidades emocionales y psicológicas de niñas, niños y sus familias.</p>
+              <p>Maestra en Terapia Infantil. Experta en desarrollo infantil, educación sexual, abuso sexual, crianza
+                respetuosa y salud mental infantil. Ofrece orientación profesional enfocada en las necesidades
+                emocionales y psicológicas de niñas, niños y sus familias.</p>
             </div>
           </div>
         </section>
@@ -403,132 +311,102 @@
   </div>
 
 
-  <script>
-    let precio = 300
-    let precioMin = 150
-    function sendToWhatsApp() {
-      const input = document.getElementById('userMessage');
-      const message = encodeURIComponent(input.value);
-      const phoneNumber = "+525560031903";
-      window.open(`https://wa.me/${phoneNumber}?text=${message}`, '_blank');
-    }
 
-    function openModal(type) {
-      const modal = document.getElementById('infoModal');
-      const simpleContent = document.getElementById('simpleModalContent');
-      const fullInfoContent = document.getElementById('fullInfoContent');
-
-      const title = document.getElementById('modalTitle');
-      const text = document.getElementById('modalText');
-
-      simpleContent.style.display = 'none';
-      fullInfoContent.style.display = 'none';
-
-      switch (type) {
-        case 'consentimiento':
-          title.innerText = 'Consentimiento Informado';
-          text.innerText = `Al hacer uso de este servicio, usted manifiesta su consentimiento informado y acepta los siguientes términos: 
-          
-          El servicio de orientación psicológica ofrecido a través de esta plataforma tiene como objetivo brindar una intervención breve, inmediata y profesional, no sustituyendo procesos terapéuticos prolongados ni tratamientos médicos o psiquiátricos. 
-          
-          El servicio se ofrece en línea, únicamente para mayores de edad, a través de la plataforma WhatsApp, por profesionales titulados en Psicología, quienes actuarán con base en su experiencia y juicio clínico. 
-          
-          Usted reconoce que este servicio no está diseñado para atender emergencias psicológicas, crisis suicidas ni situaciones que requieran intervención presencial inmediata. En dichos casos, se le recomendará acudir a los servicios de emergencia o instituciones especializadas. 
-          
-          Se hará todo lo posible por brindar atención oportuna. Sin embargo, el servicio funciona bajo demanda y está sujeto a disponibilidad. Si los profesionales se encuentran ocupados, se responderá tan pronto como sea posible. 
-          
-          El monto sugerido por la orientación se comunicará al finalizar la sesión, basado en el tiempo invertido y la naturaleza de la atención brindada. Usted podrá elegir libremente el monto a aportar, desde $100 MXN por nuestro servicio más básico hasta un máximo de ${precio + 100} MXN por hora de atención. 
-          
-          El uso continuo y reiterado del servicio sin realizar aportes podrá ser considerado un uso inapropiado. Nos reservamos el derecho de suspender la atención a usuarios que incurran en esta práctica.`
-;
-          simpleContent.style.display = 'block';
-          break;
-
-        case 'servicios':
-          title.innerText = 'Servicios';
-          text.innerText = `
-            Consejo 100: 1 Pregunta - 1 Respuesta. Usted nos hace una pregunta y nosotros le preparamos una respuesta cálida, humana y profesional en un máximo de 24 horas.
-            
-            Consejo breve libre: Lea y Conteste cuando tenga tiempo. Nosotros contestaremos a sus mensajes en menos de 24 horas y usted tendrá 8 horas para responder antes de que se dé por terminada la consulta. 
-             
-            Consejo breve premium: Respuestas inmediata del consejero desde que comienza la conversación (max. 10 min en lo que el consejero prepara la respuesta) .
-            `
-;
-          simpleContent.style.display = 'block';
-          break;
-        case 'descargo':
-          title.innerText = 'Descargo de Responsabilidad';
-          text.innerText = "Este servicio no constituye un tratamiento psicológico formal ni reemplaza la atención presencial o continua de un especialista en salud mental. Las opiniones y orientaciones brindadas tienen un carácter informativo, preventivo y de contención inicial. Cualquier acción que usted decida tomar con base en nuestras sugerencias es de su exclusiva responsabilidad. En caso de requerir seguimiento, diagnóstico clínico, medicación o intervención de mayor profundidad, se le orientará a los canales pertinentes.";
-          simpleContent.style.display = 'block';
-          break;
-        case 'privacidad':
-          title.innerText = 'Política de Privacidad';
-          text.innerText = "Nos comprometemos a proteger su privacidad. La información personal y los datos compartidos durante la orientación se mantendrán en estricta confidencialidad y no serán divulgados a terceros, salvo en los siguientes casos: cuando exista una obligación legal o requerimiento de autoridad competente; o cuando exista riesgo inminente para usted o para terceros, conforme al código ético profesional. No recopilamos datos sensibles a través de esta web, ni utilizamos cookies para fines de rastreo. Las conversaciones mantenidas por WhatsApp están sujetas a la política de privacidad de dicha plataforma. Usted tiene derecho a solicitar en cualquier momento el cese de la orientación o la eliminación de sus datos de contacto."
-;
-          simpleContent.style.display = 'block';
-          break;
-        case 'politicas':
-          title.innerText = 'Políticas de Atención';
-          text.innerText = `Información y Políticas de Atención
-
-        ❗ Descargo de responsabilidad
-        La orientación psicológica ofrecida a través de ConsejoPsi no sustituye un proceso de psicoterapia ni constituye una atención de urgencia ante crisis graves. Si estás en una situación de riesgo o emergencia, te recomendamos acudir a los servicios de emergencia psicológica de tu localidad.
-
-        ❗Este servicio está dirigido exclusivamente a personas mayores de 18 años. Al utilizar nuestros canales de orientación psicológica, el usuario declara ser mayor de edad y contar con la capacidad legal para solicitar este tipo de acompañamiento. En caso de requerirse atención psicológica para un menor de edad, será necesario que el contacto sea gestionado directamente por su madre, padre o tutor legal, quien asumirá la responsabilidad de la comunicación y cualquier posible intervención
-
-        💬 Sobre la atención y tiempos de respuesta
-        Nuestro objetivo es ofrecer atención breve, profesional y con la mayor inmediatez posible, sin necesidad de agendar. Sin embargo, este servicio opera bajo disponibilidad, por lo que, si nos encontramos atendiendo a otras personas, es posible que tu mensaje no sea respondido de inmediato. En cualquier caso, te responderemos tan pronto como nos sea posible.
-
-        💳 Sistema de pago voluntario y solidario
-        El servicio de ConsejoPsi opera bajo un modelo de pago posterior, libre y sugerido. Esto significa que, una vez recibida tu orientación, podrás aportar el monto que consideres justo con base en el tiempo de atención y el valor recibido.
-        - Para el modelo de atención libre (respuesta no inmediata) el limite minimo de pago es de $${precioMin} MXN y el límite máximo sugerido es de $${precio} MXN.
-        - Para el modelo de atención premium (respuesta máximo 10 minutos en responder dependiendo del caso) el limite mínimo de pago es de $${precioMin + 50} MXN y límite máximo sugerido es de $${precio+100} MXN.
-        - El monto específico para ambos modelos de atención se determinará según el caso, tiempo invertido y posibilidades del usuario.
-        - En caso de que el cliente pague por adelantado, el servicio se otorgara según la disponibilidad. Asi mismo, el consejero podrá sugerir un nuevo pago al final en caso de que haya una diferencia entre el servicio solicitado y el nivel de atención que requirió el cliente.
-        - Las aportaciones voluntarias y pagos hechos a través de Ko-fi no fungen como pagos por adelantado para ninguno de los servicios.
-        - Tu aportación nos permite seguir ofreciendo atención accesible y profesional a quienes más lo necesitan.
-        
-        🚫 Uso ético del servicio
-        Con el fin de asegurar la sostenibilidad de este proyecto, nos reservamos el derecho de limitar o suspender la atención a usuarios que utilicen el servicio de manera recurrente sin realizar aportaciones. Valoramos profundamente tu confianza, y pedimos que este espacio sea utilizado de forma respetuosa y solidaria.`;
-
-          simpleContent.style.display = 'block';
-          break;
-
-
-        case 'info':
-        default:
-          fullInfoContent.style.display = 'block';
-          break;
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "¿Qué es el consejo breve psicológico?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Es una orientación profesional, breve y focalizada, brindada por psicólogos con experiencia. Su objetivo es ofrecer claridad, contención y pasos prácticos ante una situación puntual, sin requerir el compromiso de un proceso terapéutico formal."
       }
-
-      modal.style.display = 'flex';
+    },
+    {
+      "@type": "Question",
+      "name": "¿Qué no hacemos?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No realizamos diagnósticos clínicos formales ni prescribimos medicación. Tampoco sustituimos un tratamiento psicológico o psiquiátrico continuado, ni atendemos emergencias o crisis con riesgo inminente. En esos casos, recomendamos acudir a servicios de urgencia o a profesionales presenciales."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Cómo funciona el servicio?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Nos escribes por WhatsApp, un profesional te responde con contención y orientación breve, y al finalizar te sugerimos, si es necesario, próximos pasos o referencias. Trabajamos por WhatsApp para mantener la atención cercana, práctica y accesible."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Quiénes brindan la orientación?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Psic. César Sánchez y Mtra. Selene Alvara, ambos con posgrado en Psicología y más de 13 años de experiencia en instituciones y práctica privada."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Cuáles son los tiempos de respuesta?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Buscamos responder con la mayor inmediatez posible, pero operamos bajo demanda y disponibilidad. Si estamos atendiendo, responderemos en cuanto podamos."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Cómo se realizan los pagos y cuál es el costo?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Usamos un modelo de pago posterior, libre y sugerido. Al terminar la orientación, puedes aportar el monto que consideres justo según el tiempo y el valor recibido, con un tope máximo por hora publicado en nuestras Políticas de atención. Aceptamos PayPal, Ko-fi y otros métodos."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Quién puede usar el servicio?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Está dirigido exclusivamente a personas mayores de 18 años. Para orientación relacionada con niñas, niños o adolescentes, la comunicación debe gestionarla su madre, padre o tutor legal."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Qué pasa si necesito más que orientación breve?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Si detectamos necesidad de terapia formal, evaluación clínica o intervención presencial, te lo diremos con honestidad y te ofreceremos referencias."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Cómo protegen mi confidencialidad y datos?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Mantenemos la confidencialidad profesional y tratamos tus datos con responsabilidad. Consulta la Política de Privacidad y el Consentimiento Informado para conocer excepciones legales y éticas."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Qué hago si estoy en una crisis o emergencia?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Este servicio no atiende urgencias. Si hay riesgo para ti o terceros, acude de inmediato a los servicios de emergencia de tu localidad o líneas de ayuda especializadas."
+      }
     }
-
-    function closeModal() {
-      document.getElementById('infoModal').style.display = 'none';
-    }
-
-    document.getElementById('contactForm').addEventListener('submit', function (e) {
-      e.preventDefault();
-
-      emailjs.sendForm('service_8vnmm7t', 'template_0tr1mwu', this)
-        .then(function () {
-          alert("Mensaje enviado correctamente. Gracias por tu mensaje.");
-          e.target.reset();
-        }, function (error) {
-          console.log(error);
-          alert("Hubo un error al enviar el mensaje. Intenta de nuevo.");
-        });
-    });
-
-    const input = document.getElementById("userInput");
-    input.addEventListener("focus", () => {
-      setTimeout(() => {
-        input.scrollIntoView({ behavior: "smooth", block: "end" });
-      }, 300); 
-    });
-
+  ]
+}
+</script>
+  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+  <script>
+    (function () {
+      emailjs.init("_fyhTOODMjUPojOZC");
+    })();
   </script>
+  <script src="script.js"></script>
 </body>
 
 </html>
