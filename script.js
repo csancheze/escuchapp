@@ -121,3 +121,52 @@ input.addEventListener("focus", () => {
     input.scrollIntoView({ behavior: "smooth", block: "end" });
   }, 300);
 });
+
+// 1. Evento al escribir en la caja de mensaje
+const userMessageInput = document.getElementById('userMessage');
+if (userMessageInput) {
+  userMessageInput.addEventListener('input', () => {
+    gtag('event', 'typing_message', {
+      event_category: 'engagement',
+      event_label: 'Caja de mensaje principal'
+    });
+  }, { once: true });
+}
+
+// 2. Evento al hacer clic en un enlace/botón de WhatsApp
+const whatsappLinks = document.querySelectorAll('a[href*="wa.me"], button[onclick*="sendToWhatsApp"]');
+whatsappLinks.forEach(link => {
+  link.addEventListener('click', () => {
+    gtag('event', 'click_whatsapp', {
+      event_category: 'engagement',
+      event_label: 'WhatsApp link/button'
+    });
+  });
+});
+
+// 3. Evento al abrir preguntas frecuentes (FAQ)
+const faqItems = document.querySelectorAll('.faq-item');
+faqItems.forEach(item => {
+  item.addEventListener('toggle', () => {
+    if (item.open) {
+      const question = item.querySelector('summary h3')?.innerText || 'Pregunta sin título';
+      gtag('event', 'faq_open', {
+        event_category: 'faq',
+        event_label: question
+      });
+    }
+  });
+});
+
+// 4. Evento al abrir cualquier modal
+const originalOpenModal = window.openModal;
+window.openModal = function(type) {
+  // Llamada original
+  originalOpenModal(type);
+
+  // Evento GA4
+  gtag('event', 'open_modal', {
+    event_category: 'modal',
+    event_label: type || 'info'
+  });
+};
