@@ -102,7 +102,7 @@ function closeModal() {
   document.getElementById('infoModal').style.display = 'none';
 }
 
-document.getElementById('contactForm').addEventListener('submit', function (e) {
+document.getElementById('contact-form').addEventListener('submit', function (e) {
   e.preventDefault();
 
   emailjs.sendForm('service_8vnmm7t', 'template_0tr1mwu', this)
@@ -115,58 +115,76 @@ document.getElementById('contactForm').addEventListener('submit', function (e) {
     });
 });
 
-const input = document.getElementById("userInput");
+const input = document.getElementById("user-input");
 input.addEventListener("focus", () => {
   setTimeout(() => {
     input.scrollIntoView({ behavior: "smooth", block: "end" });
   }, 300);
 });
 
-// 1. Evento al escribir en la caja de mensaje
-const userMessageInput = document.getElementById('userMessage');
-if (userMessageInput) {
-  userMessageInput.addEventListener('input', () => {
-    gtag('event', 'typing_message', {
-      event_category: 'engagement',
-      event_label: 'Caja de mensaje principal'
-    });
-  }, { once: true });
+// ------- Helpers seguros -------
+function track(eventName, params = {}) {
+  if (typeof gtag === 'function') {
+    // agrega debug_mode si cargaste la página con ?debug=1
+    const isDebug = /[?&]debug=1/.test(location.search);
+    gtag('event', eventName, isDebug ? { ...params, debug_mode: true } : params);
+  } else {
+    console.warn('gtag no encontrado');
+  }
 }
 
-// 2. Evento al hacer clic en un enlace/botón de WhatsApp
-const whatsappLinks = document.querySelectorAll('a[href*="wa.me"], button[onclick*="sendToWhatsApp"]');
-whatsappLinks.forEach(link => {
-  link.addEventListener('click', () => {
-    gtag('event', 'click_whatsapp', {
-      event_category: 'engagement',
-      event_label: 'WhatsApp link/button'
-    });
-  });
-});
 
-// 3. Evento al abrir preguntas frecuentes (FAQ)
-const faqItems = document.querySelectorAll('.faq-item');
-faqItems.forEach(item => {
-  item.addEventListener('toggle', () => {
-    if (item.open) {
-      const question = item.querySelector('summary h3')?.innerText || 'Pregunta sin título';
-      gtag('event', 'faq_open', {
-        event_category: 'faq',
-        event_label: question
-      });
+// ------- 1) Escribir en la caja de mensaje (dispara 1 vez por vista) -------
+(function initTypingEvent() {
+  const msg = document.getElementById('userMessage');
+  if (!msg) return;
+  let fired = false;
+  msg.addEventListener('input', () => {
+    if (!fired && msg.value.trim().length > 0) {
+      track('typing_message', { event_category: 'engagement' });
+      fired = true;
     }
   });
-});
+})();
 
-// 4. Evento al abrir cualquier modal
-const originalOpenModal = window.openModal;
-window.openModal = function(type) {
-  // Llamada original
-  originalOpenModal(type);
-
-  // Evento GA4
-  gtag('event', 'open_modal', {
-    event_category: 'modal',
-    event_label: type || 'info'
+// ------- 2) Click al botón/enlace de WhatsApp -------
+(function initWhatsAppClick() {
+  const btn = document.querySelector('.send-button');
+  if (!btn) return;
+  btn.addEventListener('click', () => {
+    track('click_whatsapp', { event_category: 'engagement', event_label: 'CTA WhatsApp' });
+    // No bloqueamos la apertura; tu sendToWhatsApp() abre en _blank
   });
-};
+})();
+
+// ------- 3) Abrir una pregunta frecuente (solo cuando se abre) -------
+(function initFaqOpen() {
+  document.querySelectorAll('.faq-item').forEach(d => {
+    d.addEventListener('toggle', () => {
+      if (d.open) {
+        const q = d.querySelector('summary h3')?.textContent?.trim() || 'desconocida';
+        track('faq_open', { item: q });
+      }
+    });
+  });
+})();
+
+// ------- 4) Abrir el modal (cualquier tipo) -------
+// Envolvemos tu openModal existente para medirlo sin tocar su lógica.
+(function wrapOpenModal() {
+  const original = window.openModal;
+  if (typeof original !== 'function') return;
+  window.openModal = function(type) {
+    track('open_modal', { type: type || 'info' });
+    return original.apply(this, arguments);
+  };
+})();
+
+// ------- 5) Envío del formulario de contacto (id correcto) -------
+(function initContactForm() {
+  const form = document.getElementById('contact-form');
+  if (!form) return;
+  form.addEventListener('submit', () => {
+    track('contact_submit', { event_category: 'lead' });
+  });
+})();
