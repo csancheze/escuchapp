@@ -7,17 +7,19 @@ body {
   font-family: Arial, sans-serif;
 }
 
-li {
+/* li {
   list-style-type: none;
   margin-bottom: 10px;
 
-}
+} */
 
 body {
   display: flex;
   flex-direction: column;
   background-color: #c4d4d3;
   color: #333;
+  font-size:medium;
+  
 }
 
 header {
@@ -35,9 +37,14 @@ header img {
   margin-right: 10px;
 }
 
-p,li,h3 {
-  padding-left: 40px;
-  padding-right: 40px;
+p,h3 {
+  padding-left: 20px;
+  padding-right: 20px;
+  text-align: center;
+}
+
+h3 {
+  font-size: medium;
 }
 
 .chat-container {
@@ -182,10 +189,17 @@ p,li,h3 {
   margin-top: 10px;
 }
 
+.full-section > p {
+  max-width: 75%;
+}
+
 @media (min-width: 768px) {
   .full-section img {
     max-width: 50%;
   }
+  .section-img-hidden {
+    visibility: visible;
+  } 
 }
 
 .card-container {
@@ -349,6 +363,10 @@ p,li,h3 {
 }
 
 .full-section:nth-child(7) {
+  background-color: #00c6a9; 
+}
+
+.full-section:nth-child(8) {
   background-color: white;
   color: black
 }
