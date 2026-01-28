@@ -46,6 +46,8 @@ function openModal(type) {
             Consejo breve libre: Lea y Conteste cuando tenga tiempo. Nosotros contestaremos a sus mensajes en menos de 24 horas y usted tendrá 8 horas para responder antes de que se dé por terminada la consulta. 
              
             Consejo breve premium: Respuestas inmediata del consejero desde que comienza la conversación (max. 10 min en lo que el consejero prepara la respuesta) .
+            
+            Terapia psicológica presencial en Coyoacán, CDMX
             `
         ;
       simpleContent.style.display = 'block';
